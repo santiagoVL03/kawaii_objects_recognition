@@ -12,7 +12,7 @@ output_base = "datasets/clothes"
 log_path = os.path.join(output_base, "corrupt_labels.txt")
 
 # Splits del dataset
-splits = {"train": "train", "validation": "val"}
+splits = {"train": "train", "validation": "validation"}
 
 # Crear carpetas
 for split_dir in splits.values():
@@ -58,7 +58,7 @@ for split_csv, split_dir in splits.items():
 
         for _, row in group.iterrows():
             try:
-                bbox = literal_eval(row["b_box"])  # [x, y, w, h]
+                bbox = literal_eval(row["bbox_fixed"])  # [x, y, w, h]
                 x, y, w, h = map(float, bbox)
 
                 # Evitar divisiones por cero o anchos/altos negativos

@@ -1,7 +1,7 @@
 # clothes.yaml
 
 train: datasets/clothes/images/train
-val: datasets/clothes/images/val
+val: datasets/clothes/images/validation
 
 nc: 13
 names: [
