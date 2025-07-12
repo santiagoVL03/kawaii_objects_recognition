@@ -15,6 +15,7 @@ def main():
         batch=16,
         name="clothes_recognition_own_dataset",
         patience=2,
+        freeze =3,  # Congela las primeras 3 capas
     )
 
 if __name__ == "__main__":

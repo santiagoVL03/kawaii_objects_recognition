@@ -1,2 +1,5 @@
 datasets/
 runs/
+.venv/
+.venv-1/
+*.jpg
