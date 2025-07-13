@@ -15,6 +15,10 @@ output_base = "segmentation_dataset"
 splits = {"train": "train", "validation": "validation"}
 IMG_SIZE = (256, 256)  # Assumed target size
 
+# Clases agrupadas por tipo
+superior_ids = {0, 1, 2, 3, 4, 5, 9, 10, 11, 12}  # categorías de tops y vestidos
+inferior_ids = {6, 7, 8}                         # shorts, trousers, skirt
+
 # Crear carpetas de salida
 for split in splits.values():
     os.makedirs(os.path.join(output_base, split, "images"), exist_ok=True)
@@ -42,15 +46,22 @@ for split_name_csv, split_folder in splits.items():
 
             for _, row in group.iterrows():
                 try:
-                    segmentation = literal_eval(row["segmentation"])
-                    class_id = int(row["category_id"]) - 1  # Convertir a 0-12
-                    if not (0 <= class_id < 13):
-                        continue
+                    segmentation = literal_eval(row["segmentation"]) # type: ignore
+                    class_id = int(row["category_id"]) - 1  # type: ignore # Convertir a 0-12
+                    if class_id < 0 or class_id > 12:
+                        continue  # Ignorar clases fuera del rango
+                    label = 0  # Fondo
+                    if class_id in superior_ids:
+                        label = 1  # Superior
+                    elif class_id in inferior_ids:
+                        label = 2 # Inferior
+                    else:
+                        continue  # Ignorar clases no deseadas
 
                     for polygon in segmentation:
                         if isinstance(polygon, list) and len(polygon) >= 6:
                             xy = [(polygon[i], polygon[i + 1]) for i in range(0, len(polygon), 2)]
-                            draw.polygon(xy, fill=class_id)
+                            draw.polygon(xy, fill=label)
 
                 except Exception as e:
                     print(f"⚠️ Error procesando segmentación para {img_filename}: {e}")

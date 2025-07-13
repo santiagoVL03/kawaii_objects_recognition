@@ -3,3 +3,7 @@ runs/
 .venv/
 .venv-1/
 *.jpg
+*.png
+.conda/
+*.pyc
+__pycache__/
