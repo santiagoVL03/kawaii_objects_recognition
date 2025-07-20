@@ -7,3 +7,13 @@ runs/
 .conda/
 *.pyc
 __pycache__/
+*.pkl
+*.pkl.gz
+*.h5
+*.hdf5
+*.json
+*.log
+*.csv
+*.db
+*.sqlite
+*.zip

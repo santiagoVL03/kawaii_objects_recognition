@@ -4,25 +4,20 @@ from tqdm import tqdm
 import numpy as np
 from PIL import Image
 
-# Rutas de entrada
 images_dir = "segmentation_dataset/validation/images"
 masks_dir = "segmentation_dataset/validation/masks"
 
-# Rutas de salida
 output_base = "segmentation_dataset_balanced/validation"
 images_out = os.path.join(output_base, "images")
 masks_out = os.path.join(output_base, "masks")
 os.makedirs(images_out, exist_ok=True)
 os.makedirs(masks_out, exist_ok=True)
 
-# Límite por clase
-MAX_PER_CLASS = 2500
+MAX_PER_CLASS = 10000
 counts = {1: 0, 2: 0}
 
-# Obtener todas las máscaras ordenadas
 mask_files = sorted(os.listdir(masks_dir))
 
-print("🧮 Recorriendo dataset de validación para balancear...")
 for fname in tqdm(mask_files):
     mask_path = os.path.join(masks_dir, fname)
     image_path = os.path.join(images_dir, os.path.splitext(fname)[0] + ".jpg")
@@ -39,16 +34,16 @@ for fname in tqdm(mask_files):
                 shutil.copy(image_path, os.path.join(images_out, os.path.basename(image_path)))
                 shutil.copy(mask_path, os.path.join(masks_out, fname))
                 counts[label] += 1
-                break  # Solo copiar una vez por imagen
+                break
 
         if all(v >= MAX_PER_CLASS for v in counts.values()):
-            print("✅ Se alcanzó el límite de 2500 por clase.")
+            print("Se alcanzó el límite de 2500 por clase.")
             break
 
     except Exception as e:
-        print(f"⚠️ Error al procesar {fname}: {e}")
+        print(f"Error al procesar {fname}: {e}")
         continue
 
-print("\n🎯 Proceso finalizado.")
+print("\nProceso finalizado.")
 print(f"Total clase 1 (abajo): {counts[1]}")
 print(f"Total clase 2 (arriba): {counts[2]}")

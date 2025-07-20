@@ -35,7 +35,7 @@ for split_name_csv, split_folder in splits.items():
         img_path = os.path.join(resized_img_path, split_name_csv, img_filename)
 
         if not os.path.exists(img_path):
-            print(f"❌ Imagen no encontrada: {img_path}")
+            print(f"Imagen no encontrada: {img_path}")
             continue
 
         # Cargar imagen y crear máscara vacía

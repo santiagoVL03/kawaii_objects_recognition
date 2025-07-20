@@ -13,12 +13,11 @@ masks_out = os.path.join(output_base, "masks")
 os.makedirs(images_out, exist_ok=True)
 os.makedirs(masks_out, exist_ok=True)
 
-MAX_PER_CLASS = 40000
+MAX_PER_CLASS = 10000
 counts = {1: 0, 2: 0}
 
 mask_files = sorted(os.listdir(masks_dir))
 
-print("🧮 Recorriendo dataset para balancear...")
 for fname in tqdm(mask_files):
     mask_path = os.path.join(masks_dir, fname)
     image_path = os.path.join(images_dir, os.path.splitext(fname)[0] + ".jpg")
@@ -38,13 +37,13 @@ for fname in tqdm(mask_files):
                 break
 
         if all(v >= MAX_PER_CLASS for v in counts.values()):
-            print("✅ Se alcanzó el límite de 40k por clase.")
+            print("Se alcanzó el límite de 40k por clase.")
             break
 
     except Exception as e:
-        print(f"⚠️ Error al procesar {fname}: {e}")
+        print(f"Error al procesar {fname}: {e}")
         continue
 
-print("\n🎯 Proceso finalizado.")
+print("\nProceso finalizado.")
 print(f"Total clase 1 (abajo): {counts[1]}")
 print(f"Total clase 2 (arriba): {counts[2]}")
