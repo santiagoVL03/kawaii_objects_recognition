@@ -53,7 +53,7 @@ for path in tqdm(sample_paths, desc=f"Visualizando {split_name} (20 muestras)"):
                 draw.text((x, y), str(class_id), fill="yellow")
 
             except Exception as e:
-                print(f"⚠️ Error procesando {img_filename}: {e}")
+                print(f"Error procesando {img_filename}: {e}")
                 continue
 
         # Guardar imagen con cajas

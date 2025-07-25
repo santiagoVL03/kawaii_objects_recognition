@@ -30,7 +30,7 @@ def test_model_loading():
         with tf.device('/CPU:0'):
             model = tf.keras.models.load_model(model_path, compile=False)
         
-        print("✅ Modelo cargado exitosamente")
+        print("Modelo cargado exitosamente")
         print(f"Entrada esperada: {model.input_shape}")
         print(f"Salida esperada: {model.output_shape}")
         
@@ -41,7 +41,7 @@ def test_model_loading():
         with tf.device('/CPU:0'):
             prediction = model.predict(dummy_input, verbose=0)
         
-        print(f"✅ Predicción exitosa. Shape: {prediction.shape}")
+        print(f"Predicción exitosa. Shape: {prediction.shape}")
         return True
         
     except Exception as e:

@@ -64,7 +64,7 @@ for split_name_csv, split_folder in splits.items():
                             draw.polygon(xy, fill=label)
 
                 except Exception as e:
-                    print(f"⚠️ Error procesando segmentación para {img_filename}: {e}")
+                    print(f"Error procesando segmentación para {img_filename}: {e}")
                     continue
 
             # Guardar imagen y máscara
@@ -78,4 +78,4 @@ for split_name_csv, split_folder in splits.items():
             print(f"❌ Error procesando {img_filename}: {e}")
             continue
 
-print("\n✅ Dataset preparado para segmentación.")
+print("\nDataset preparado para segmentación.")

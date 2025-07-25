@@ -375,7 +375,7 @@ def predict_image(model_path="best_model.keras", image_path="../yolo_images/ROPA
     ax3.set_title('Imagen con Destacado Brillante', fontsize=14, fontweight='bold')
     ax3.axis('off')
     
-    plt.suptitle('🎨 Segmentación con Detección de Colores Reales', fontsize=18, fontweight='bold')
+    plt.suptitle('Segmentación con Detección de Colores Reales', fontsize=18, fontweight='bold')
     plt.tight_layout()
     plt.show()
     
@@ -383,7 +383,7 @@ def predict_image(model_path="best_model.keras", image_path="../yolo_images/ROPA
     unique, counts = np.unique(mask, return_counts=True)
     total = mask.size
     
-    print("\n📊 RESULTADO:")
+    print("\nRESULTADO:")
     classes = {0: "Fondo", 1: "Prenda Arriba", 2: "Prenda Abajo"}
     for class_id, count in zip(unique, counts):
         percent = (count/total) * 100
@@ -434,7 +434,7 @@ def predict_image(model_path="best_model.keras", image_path="../yolo_images/ROPA
     plt.savefig('results/prediction.png', dpi=150, bbox_inches='tight')
     plt.close()
     
-    print("💾 Resultado guardado en: results/prediction.png")
+    print("Resultado guardado en: results/prediction.png")
 if __name__ == "__main__":
     print("🚀 PREDICTOR DE SEGMENTACIÓN DE ROPA - DETECTOR DE COLORES")
     print("=" * 60)
@@ -457,6 +457,6 @@ if __name__ == "__main__":
         predict_image(model_path)
     else:
         print("No se encontró el modelo best_model.keras")
-        print("💡 Asegúrate de que esté en una de estas ubicaciones:")
+        print("Asegúrate de que esté en una de estas ubicaciones:")
         for candidate in model_candidates:
             print(f"   - {candidate}")

@@ -56,4 +56,4 @@ df["bbox_fixed"] = bbox_fixed
 # Guardar CSV actualizado
 output_path = os.path.join(input_csv_path, f"{split_name}_with_bbox_fixed.csv")
 df.to_csv(output_path, index=False)
-print(f"\n✅ Bounding boxes corregidos guardados en: {output_path}")
+print(f"\nBounding boxes corregidos guardados en: {output_path}")

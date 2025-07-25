@@ -55,7 +55,7 @@ for path, group in tqdm(grouped, desc="Visualizando segmentaciones (20 muestras)
                         draw.polygon(polygon, outline="green")
 
             except Exception as e:
-                print(f"⚠️ Error en segmentación de {img_filename}: {e}")
+                print(f"Error en segmentación de {img_filename}: {e}")
                 continue
 
         # Guardar imagen con segmentación
@@ -65,4 +65,4 @@ for path, group in tqdm(grouped, desc="Visualizando segmentaciones (20 muestras)
         print(f"❌ Error con imagen {img_filename}: {e}")
         continue
 
-print(f"\n✅ Segmentaciones visualizadas guardadas en: {output_debug_dir}")
+print(f"\nSegmentaciones visualizadas guardadas en: {output_debug_dir}")

@@ -19,7 +19,7 @@ def load_model_safe(model_path):
         try:
             # Método 1: Usando tf.keras directamente
             model = tf.keras.models.load_model(model_path, compile=False)
-            print("✅ Modelo cargado con tf.keras (CPU)")
+            print("Modelo cargado con tf.keras (CPU)")
             return model
         except Exception as e1:
             print(f"Método 1 falló: {e1}")
@@ -27,7 +27,7 @@ def load_model_safe(model_path):
                 # Método 2: Importando keras separadamente
                 import keras
                 model = keras.models.load_model(model_path, compile=False)
-                print("✅ Modelo cargado con keras (CPU)")
+                print("Modelo cargado con keras (CPU)")
                 return model
             except Exception as e2:
                 print(f"Método 2 falló: {e2}")
@@ -35,7 +35,7 @@ def load_model_safe(model_path):
                     # Método 3: Con configuración explícita
                     from tensorflow.keras.models import load_model
                     model = load_model(model_path, compile=False)
-                    print("✅ Modelo cargado con load_model directo (CPU)")
+                    print("Modelo cargado con load_model directo (CPU)")
                     return model
                 except Exception as e3:
                     print(f"Método 3 falló: {e3}")
@@ -50,14 +50,14 @@ print("Forzando ejecución en CPU...")
 
 # Cargar modelos
 model_person = YOLO('best_human_model.pt')
-print("✅ Modelo YOLO de personas cargado")
+print("Modelo YOLO de personas cargado")
 
 # Modelo Keras para generar máscaras
 model_keras = load_model_safe('best_model.keras')
 if model_keras is None:
     print("❌ Error cargando modelo Keras")
     exit()
-print("✅ Modelo Keras cargado")
+print("Modelo Keras cargado")
 
 def preprocess_image_for_keras(image):
     """
@@ -224,7 +224,7 @@ if not cap.isOpened():
     print("❌ No se pudo abrir la cámara.")
     exit()
 
-print("✅ Webcam iniciada. Presiona ESC para salir.")
+print("Webcam iniciada. Presiona ESC para salir.")
 
 
 last_analysis_time = 0
@@ -309,7 +309,7 @@ while True:
                 
                 current_overlay = create_segmentation_overlay(person_crop, current_mask, color_prenda_arriba, color_prenda_abajo)
                 
-                print("✅ Análisis completado")
+                print("Análisis completado")
                 
             except Exception as e:
                 print(f"❌ Error en análisis: {e}")
@@ -377,4 +377,4 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-print("✅ Aplicación cerrada correctamente")
+print("Aplicación cerrada correctamente")

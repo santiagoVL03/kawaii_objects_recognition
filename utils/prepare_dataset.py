@@ -101,5 +101,5 @@ if corrupt_log:
         f.write("\n".join(corrupt_log))
     print(f"\n📄 Guardado log de imágenes corruptas en: {log_path}")
 else:
-    print("\n✅ No se detectaron imágenes con coordenadas fuera de rango.")
-print("\n✅ Proceso completado exitosamente.")
+    print("\nNo se detectaron imágenes con coordenadas fuera de rango.")
+print("\nProceso completado exitosamente.")

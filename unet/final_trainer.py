@@ -17,12 +17,12 @@ def main():
     print("ENTRENAMIENTO DE SEGMENTACIÓN - VERSIÓN EFICIENTE EN MEMORIA")
     print("=" * 60)
     
-    batch_size = 16  # Adjust according to your RAM/GPU available
+    batch_size = 16
     epochs = 8
     learning_rate = 1e-4
     validation_split = 0.2
     
-    # Configure TensorFlow for GPU (if available)
+  
     setup_tensorflow()
     
     project_root = os.path.abspath(os.path.join(".."))
@@ -48,7 +48,7 @@ def main():
         print(f"ERROR al crear datasets: {e}")
         return
     
-    # Crear preview del dataset
+  
     print("\nCREANDO PREVIEW DEL DATASET...")
     try:
         fig = preview_robust_dataset(train_dataset, num_samples=3)
@@ -56,11 +56,11 @@ def main():
             fig.savefig(os.path.join(output_dir, "training_dataset_preview.png"), 
                        dpi=150, bbox_inches='tight')
             plt.close(fig)
-            print(f"💾 Preview guardado en: {output_dir}/training_dataset_preview.png")
+            print(f"Preview guardado en: {output_dir}/training_dataset_preview.png")
     except Exception as e:
-        print(f"⚠️ No se pudo crear preview: {e}")
+        print(f"No se pudo crear preview: {e}")
     
-    # Crear y compilar modelo
+  
     print("\nCREANDO MODELO UNET...")
     try:
         unet = model.UNetCompiled(input_size=(128, 128, 3), n_filters=32, n_classes=3)
@@ -104,11 +104,11 @@ def main():
     ]
     print("Callbacks configurados!")
     
-    print(f"\n🎯 INICIANDO ENTRENAMIENTO ({epochs} épocas)...")
-    print("💡 Tip: El entrenamiento usará muy poca RAM gracias a tf.data.Dataset")
+    print(f"\nINICIANDO ENTRENAMIENTO ({epochs} épocas)...")
+    print("Tip: El entrenamiento usará muy poca RAM gracias a tf.data.Dataset")
     
     try:
-        # Entrenar usando datasets eficientes
+      
         history = unet.fit(
             train_dataset,
             epochs=epochs,
@@ -123,7 +123,7 @@ def main():
         print(f"ERROR durante entrenamiento: {e}")
         return
     
-    # Guardar modelo final
+  
     print("\nGUARDANDO MODELO FINAL...")
     try:
         unet.save(os.path.join(model_dir, "final_unet_model.keras"))
@@ -131,7 +131,7 @@ def main():
     except Exception as e:
         print(f"Error guardando modelo final: {e}")
 
-    # Crear gráficos de entrenamiento
+  
     print("\nCREANDO GRÁFICOS DE ENTRENAMIENTO...")
     try:
         create_training_plots(history, output_dir)
@@ -164,7 +164,7 @@ def setup_tensorflow():
     else:
         print("Usando CPU para entrenamiento")
 
-    # Configurar nivel de log
+  
     tf.get_logger().setLevel('ERROR')
 
 
@@ -174,7 +174,7 @@ def create_training_plots(history, output_dir):
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
     fig.suptitle('Historial de Entrenamiento - Segmentación UNet', fontsize=16)
     
-    # Gráfico de pérdida
+  
     axes[0, 0].plot(history.history['loss'], label='Entrenamiento', linewidth=2)
     axes[0, 0].plot(history.history['val_loss'], label='Validación', linewidth=2)
     axes[0, 0].set_title('Pérdida del Modelo')
@@ -183,7 +183,7 @@ def create_training_plots(history, output_dir):
     axes[0, 0].legend()
     axes[0, 0].grid(True, alpha=0.3)
     
-    # Gráfico de precisión
+  
     axes[0, 1].plot(history.history['accuracy'], label='Entrenamiento', linewidth=2)
     axes[0, 1].plot(history.history['val_accuracy'], label='Validación', linewidth=2)
     axes[0, 1].set_title('Precisión del Modelo')
@@ -192,7 +192,7 @@ def create_training_plots(history, output_dir):
     axes[0, 1].legend()
     axes[0, 1].grid(True, alpha=0.3)
     
-    # Learning rate (si está en el historial)
+  
     if 'lr' in history.history:
         axes[1, 0].plot(history.history['lr'], linewidth=2, color='orange')
         axes[1, 0].set_title('Tasa de Aprendizaje')
@@ -204,7 +204,7 @@ def create_training_plots(history, output_dir):
         axes[1, 0].text(0.5, 0.5, 'Learning Rate\nno disponible', 
                        ha='center', va='center', transform=axes[1, 0].transAxes)
     
-    # Diferencia entre train y val loss
+  
     if len(history.history['loss']) > 0:
         diff = [abs(t - v) for t, v in zip(history.history['loss'], history.history['val_loss'])]
         axes[1, 1].plot(diff, linewidth=2, color='red')
@@ -218,7 +218,7 @@ def create_training_plots(history, output_dir):
                dpi=300, bbox_inches='tight')
     plt.close()
     
-    # Crear un gráfico simple adicional
+  
     plt.figure(figsize=(12, 5))
     
     plt.subplot(1, 2, 1)

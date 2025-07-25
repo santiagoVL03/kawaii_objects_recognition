@@ -4,7 +4,7 @@
 
 El problema que tenías era que estabas cargando **todas las imágenes** en memoria de una vez con tu función `PreprocessData()`. Esto es muy ineficiente y causa problemas de memoria.
 
-## ✅ Nueva solución con tf.data.Dataset
+## Nueva solución con tf.data.Dataset
 
 Ahora uso `tf.data.Dataset` que:
 - **Carga las imágenes solo cuando las necesita** (lazy loading)
@@ -42,7 +42,7 @@ train_dataset, val_dataset = create_train_validation_datasets(
 model.fit(train_dataset, validation_data=val_dataset, epochs=10)
 ```
 
-## 🎯 Ventajas de la nueva implementación:
+## Ventajas de la nueva implementación:
 
 1. **Memoria constante**: Solo mantiene en memoria un batch a la vez
 2. **Procesamiento paralelo**: Las imágenes se procesan usando múltiples cores
