@@ -30,7 +30,7 @@ for path in tqdm(sample_paths, desc=f"Visualizando {split_name} (20 muestras)"):
     img_path = os.path.join(resized_img_path, split_name, img_filename)
 
     if not os.path.exists(img_path):
-        print(f"❌ Imagen no encontrada: {img_path}")
+        print(f"Imagen no encontrada: {img_path}")
         continue
 
     try:
@@ -60,7 +60,7 @@ for path in tqdm(sample_paths, desc=f"Visualizando {split_name} (20 muestras)"):
         img.save(os.path.join(output_debug_dir, img_filename))
 
     except Exception as e:
-        print(f"❌ Error con imagen {img_filename}: {e}")
+        print(f"Error con imagen {img_filename}: {e}")
         continue
 
 print(f"\n🖼️ Proceso completado. Visualizaciones guardadas en: {output_debug_dir}")

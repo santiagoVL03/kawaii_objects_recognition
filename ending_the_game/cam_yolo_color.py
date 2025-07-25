@@ -9,13 +9,13 @@ model_fashion = YOLO('pesos/best_fashion.pt')
 # Abrir webcam
 cap = cv2.VideoCapture(0)
 if not cap.isOpened():
-    print("❌ No se pudo abrir la cámara.")
+    print("No se pudo abrir la cámara.")
     exit()
 
 while True:
     ret, frame = cap.read()
     if not ret:
-        print("❌ Error al leer el frame.")
+        print("Error al leer el frame.")
         break
 
     output_frame = frame.copy()

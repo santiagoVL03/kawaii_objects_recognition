@@ -39,7 +39,7 @@ def load_model_safe(model_path):
                     return model
                 except Exception as e3:
                     print(f"Método 3 falló: {e3}")
-                    print(f"❌ Error cargando modelo: No se pudo cargar con ningún método")
+                    print(f"Error cargando modelo: No se pudo cargar con ningún método")
                     return None
 
 
@@ -55,7 +55,7 @@ print("Modelo YOLO de personas cargado")
 # Modelo Keras para generar máscaras
 model_keras = load_model_safe('best_model.keras')
 if model_keras is None:
-    print("❌ Error cargando modelo Keras")
+    print("Error cargando modelo Keras")
     exit()
 print("Modelo Keras cargado")
 
@@ -221,7 +221,7 @@ print("Iniciando webcam...")
 cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
-    print("❌ No se pudo abrir la cámara.")
+    print("No se pudo abrir la cámara.")
     exit()
 
 print("Webcam iniciada. Presiona ESC para salir.")
@@ -237,7 +237,7 @@ color_prenda_abajo = None
 while True:
     ret, frame = cap.read()
     if not ret:
-        print("❌ Error al leer el frame.")
+        print("Error al leer el frame.")
         break
 
     output_frame = frame.copy()
@@ -312,7 +312,7 @@ while True:
                 print("Análisis completado")
                 
             except Exception as e:
-                print(f"❌ Error en análisis: {e}")
+                print(f"Error en análisis: {e}")
                 print(f"Tipo de error: {type(e).__name__}")
                 current_mask = None
                 current_overlay = None

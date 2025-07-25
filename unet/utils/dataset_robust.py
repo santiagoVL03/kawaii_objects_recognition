@@ -122,7 +122,7 @@ def test_dataset_creation(images_dir, masks_dir, target_shape_img, target_shape_
         return train_ds, val_ds
         
     except Exception as e:
-        print(f"❌ Error al crear dataset: {str(e)}")
+        print(f"Error al crear dataset: {str(e)}")
         return None, None
 
 
@@ -159,7 +159,7 @@ def preview_robust_dataset(dataset, num_samples=2):
         return fig
         
     except Exception as e:
-        print(f"❌ Error al crear preview: {str(e)}")
+        print(f"Error al crear preview: {str(e)}")
         return None
 
 

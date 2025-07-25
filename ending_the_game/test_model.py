@@ -20,7 +20,7 @@ def test_model_loading():
     model_path = 'best_model.keras'
     
     if not os.path.exists(model_path):
-        print(f"❌ Modelo no encontrado: {model_path}")
+        print(f"Modelo no encontrado: {model_path}")
         return False
     
     try:
@@ -45,7 +45,7 @@ def test_model_loading():
         return True
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         print(f"Tipo de error: {type(e).__name__}")
         return False
 

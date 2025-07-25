@@ -75,7 +75,7 @@ for split_name_csv, split_folder in splits.items():
             mask.save(out_mask_path)
 
         except Exception as e:
-            print(f"❌ Error procesando {img_filename}: {e}")
+            print(f"Error procesando {img_filename}: {e}")
             continue
 
 print("\nDataset preparado para segmentación.")
