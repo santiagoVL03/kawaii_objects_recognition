@@ -1,0 +1,11 @@
+# Computer Vision and Deep Learning
+opencv-python
+numpy
+tensorflow
+
+# YOLO Object Detection
+ultralytics
+
+# Additional dependencies that might be needed
+Pillow
+matplotlib
